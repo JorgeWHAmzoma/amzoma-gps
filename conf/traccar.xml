@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-    <!-- Documentation: https://www.traccar.org/configuration-file/ -->
+    <!-- Configuración de la base de datos PostgreSQL -->
+    <entry key="database.driver">org.postgresql.Driver</entry>
+    <entry key="database.url">jdbc:postgresql://aws-0-sa-east-1.pooler.supabase.com:5432/postgres</entry>
+    <entry key="database.user">postgres.vameohdtryslyhrgeufj</entry>
+    <entry key="database.password">${DB_PASSWORD}</entry>
 
-    <entry key='database.driver'>org.postgresql.Driver</entry>
-    <entry key='database.url'>jdbc:postgresql://aws-0-sa-east-1.pooler.supabase.com:5432/postgres</entry>
-    <entry key='database.user'>postgres.vameohdtryslyhrgeufj</entry>
-    <entry key='database.password'>${DB_PASSWORD}</entry>
-    <entry key='users.registration'>false</entry>
+    <!-- Deshabilitar registro público -->
+    <entry key="users.registration">false</entry>
 
-    <entry key='web.port'>8082</entry>
+    <!-- Puerto para el servidor web -->
+    <entry key="web.port">8082</entry>
+
 </properties>
