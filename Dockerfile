@@ -14,5 +14,5 @@ COPY conf/traccar.xml conf/traccar.xml
 # Expón el puerto por defecto de la web
 EXPOSE 8082
 
-# Ejecuta Traccar en modo foreground para que Render lo mantenga activo
-CMD ["./bin/traccar", "start", "foreground"]
+# Asegura permisos de ejecución y ejecuta Traccar en modo foreground
+CMD ["sh", "-c", "chmod +x ./bin/traccar && ./bin/traccar start foreground"]
