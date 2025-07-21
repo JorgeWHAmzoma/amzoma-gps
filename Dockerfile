@@ -2,22 +2,19 @@ FROM openjdk:17-jdk-alpine
 
 WORKDIR /opt/traccar
 
-RUN apk add --no-cache unzip bash curl
+# Descarga el release ya descomprimido con los binarios
+ADD https://github.com/traccar/traccar/releases/download/v6.8.1/traccar-linux-64-6.8.1.tar.gz /tmp/traccar.tar.gz
 
-# Descarga la versión ya compilada
-ADD https://github.com/traccar/traccar/releases/download/v6.8.1/traccar-linux-64-6.8.1.zip /tmp/traccar.zip
+# Instala tar, descomprime y limpia
+RUN apk add --no-cache tar && \
+    tar -xzf /tmp/traccar.tar.gz -C . --strip-components=1 && \
+    rm /tmp/traccar.tar.gz
 
-# Descomprime
-RUN unzip /tmp/traccar.zip -d . && rm /tmp/traccar.zip
-
-# Lista la estructura para debug (puedes quitar luego)
-RUN ls -lR
-
-# Copia tu archivo de configuración personalizado
+# Copia configuración
 COPY conf/traccar.xml conf/traccar.xml
 
-# Expón el puerto por defecto
+# Expón el puerto
 EXPOSE 8082
 
-# Cambia la ruta al ejecutable según corresponda (ejemplo aquí)
-CMD ["sh", "-c", "chmod +x ./traccar && ./traccar start foreground"]
+# Ejecuta el servidor
+CMD ["./bin/traccar", "start", "foreground"]
