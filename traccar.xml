@@ -12,6 +12,6 @@
     <entry key="users.registration">false</entry>
 
     <!-- Puerto para el servidor web -->
-    <entry key="web.port">8082</entry>
+    <entry key="web.port">${PORT}</entry>
 
 </properties>
